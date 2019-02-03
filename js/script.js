@@ -3,7 +3,24 @@ Treehouse Techdegree:
 FSJS project 2 - List Filter and Pagination
 ******************************************/
 const pageDiv = document.querySelector('div.page');
+const headerDiv = document.querySelector('div.page-header');
 const studentList = document.querySelectorAll('li.student-item');
+
+//function used to create search component
+
+const appendSearch = () => {
+   const searchDiv = document.createElement('div');
+   searchDiv.className = 'student-search';
+   headerDiv.appendChild(searchDiv);
+
+   const input = document.createElement('input');
+   input.placeholder = 'search for students...';
+   searchDiv.appendChild(input);
+
+   const button = document.createElement('button');
+   button.textContent = 'search';
+   searchDiv.appendChild(button);
+}
 
 //function used to display only ten students based on the page selected
 
@@ -59,7 +76,11 @@ const appendPageLinks = (list) => {
    }
 }
 
-//Call the showPage function for the initial load to display page 1
+/*** 
+   Call the showPage and appendSearch function for the initial load 
+   to display page 1 with a search component
+***/
 showPage(studentList, 1);
+appendSearch();
 
 appendPageLinks(studentList);
