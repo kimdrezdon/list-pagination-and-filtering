@@ -37,7 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
    ***/
    const showPage = (list, page) => {
       for (let i = 0; i < list.length; i++) {
-         if (list[i] >= 0 && list[i] <= 9) {
+         const firstIndex = (page * 10) - 10;
+         const lastIndex = (page * 10) - 1;
+         if (list[i] >= firstIndex && list[i] <= lastIndex) {
             list[i].style.display = '';
          } else {
             list[i].style.display = 'none';
@@ -69,8 +71,17 @@ document.addEventListener('DOMContentLoaded', () => {
          li.appendChild(a);
       };
       
-      //a.addEventListener('click', () => {
-      //   showPage(pageNum);
+      const pageLinks = document.querySelectorAll('ul a');
+      for (let i = 0; i < pageLinks.length; i++) {
+         pageLinks[i].className = '';
+         pageLinks[i].addEventListener('click', (e) => {
+            const activePage = e.target;
+            activePage.className = 'active';
+            const pageNum = i + 1;
+            showPage(list, pageNum);
+         });
+      }
+
    }
 
    appendPageLinks(studentList);
