@@ -19,7 +19,6 @@ FSJS project 2 - List Filter and Pagination
 
 const pageDiv = document.querySelector('div.page');
 const studentList = document.querySelectorAll('li.student-item');
-console.log(studentList.length);
 
 /*** 
    Create the `showPage` function to hide all of the items in the 
@@ -74,8 +73,10 @@ const appendPageLinks = (list) => {
    
    const pageLinks = document.querySelectorAll('a');
    for (let i = 0; i < pageLinks.length; i++) {
-      pageLinks[i].className = '';
       pageLinks[i].addEventListener('click', (e) => {
+         for (let i = 0; i < pageLinks.length; i++) {
+            pageLinks[i].className = '';
+         };
          const activePage = e.target;
          activePage.className = 'active';
          const pageNum = i + 1;
