@@ -45,12 +45,12 @@ const showPage = (list, page) => {
 const appendPageLinks = (list) => {
    const totalPages = Math.ceil(list.length / 10);
    
-   const div = document.createElement('div');
-   div.className = 'pagination';
-   pageDiv.appendChild(div);
+   const linkDiv = document.createElement('div');
+   linkDiv.className = 'pagination';
+   pageDiv.appendChild(linkDiv);
 
    const ul = document.createElement('ul');
-   div.appendChild(ul);
+   linkDiv.appendChild(ul);
    
    for (let i = 0; i < totalPages; i++) {
       const li = document.createElement('li');
