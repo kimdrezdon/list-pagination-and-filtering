@@ -25,8 +25,8 @@ searchDiv.appendChild(button);
 const studentNames = document.querySelectorAll('h3');
 button.addEventListener('click', () => {
    const userInput = input.value;
-   for (let i = 0; i < studentList.length; i++) {
-      if (studentNames[i].textContent.toUpperCase === userInput.toUpperCase) {
+   for (let i = 0; i < studentNames.length; i++) {
+      if (studentNames[i].textContent.toUpperCase() === userInput.toUpperCase()) {
          studentList[i].style.display = '';
       } else {
          studentList[i].style.display = 'none';
@@ -92,6 +92,7 @@ const appendPageLinks = (list) => {
    Call the showPage and appendSearch function for the initial load 
    to display page 1 with a search component
 ***/
+
 showPage(studentList, 1);
 
 appendPageLinks(studentList);
