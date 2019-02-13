@@ -20,20 +20,6 @@ const button = document.createElement('button');
 button.textContent = 'search';
 searchDiv.appendChild(button);
 
-//add functionality to search component
-
-const studentNames = document.querySelectorAll('h3');
-button.addEventListener('click', () => {
-   const userInput = input.value.toUpperCase();
-   for (let i = 0; i < studentNames.length; i++) {
-      if (studentNames[i].textContent.toUpperCase().includes(userInput)) {
-         studentList[i].style.display = '';
-      } else {
-         studentList[i].style.display = 'none';
-      }
-   }
-});
-
 //function used to display only ten students based on the page selected
 
 const showPage = (list, page) => {
@@ -96,3 +82,20 @@ const appendPageLinks = (list) => {
 showPage(studentList, 1);
 
 appendPageLinks(studentList);
+
+//add functionality to search component
+
+const studentNames = document.querySelectorAll('h3');
+button.addEventListener('click', () => {
+   const userInput = input.value.toUpperCase();
+   const filteredList = [];
+   for (let i = 0; i < studentNames.length; i++) {
+      if (studentNames[i].textContent.toUpperCase().includes(userInput)) {
+         studentList[i].style.display = '';
+         filteredList.push(studentNames[i]);
+      } else {
+         studentList[i].style.display = 'none';
+      }
+   }
+   appendPageLinks(filteredList);
+});
