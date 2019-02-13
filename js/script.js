@@ -24,9 +24,9 @@ searchDiv.appendChild(button);
 
 const studentNames = document.querySelectorAll('h3');
 button.addEventListener('click', () => {
-   const userInput = input.value;
+   const userInput = input.value.toUpperCase();
    for (let i = 0; i < studentNames.length; i++) {
-      if (studentNames[i].textContent.toUpperCase() === userInput.toUpperCase()) {
+      if (studentNames[i].textContent.toUpperCase().includes(userInput)) {
          studentList[i].style.display = '';
       } else {
          studentList[i].style.display = 'none';
