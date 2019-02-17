@@ -91,14 +91,8 @@ pageDiv.appendChild(noResultsDiv);
 noResultsDiv.innerHTML = "<p>No students were found with that name</p>";
 
 //filtering function
-/* 
+
 const filter = () => {
-
-} */
-
-//add event listeners to search component
-
-button.addEventListener('click', () => {
    const userInput = input.value.toUpperCase();
    const filteredList = [];
    const linkDiv = document.querySelector('div.pagination');
@@ -119,29 +113,16 @@ button.addEventListener('click', () => {
    }
    pageDiv.removeChild(linkDiv);
    appendPageLinks(filteredList);
+}
+
+//add event listeners to search component
+
+button.addEventListener('click', () => {
+   filter();
 });
 
 input.addEventListener('keyup', (e) => {
    if (e.key === 'Enter') {
-      const userInput = input.value.toUpperCase();
-      const filteredList = [];
-      const linkDiv = document.querySelector('div.pagination');
-      let results = false;
-      for (let i = 0; i < studentNames.length; i++) {
-         if (studentNames[i].textContent.toUpperCase().includes(userInput)) {
-            studentList[i].style.display = '';
-            filteredList.push(studentNames[i]);
-            results = true;
-         } else {
-            studentList[i].style.display = 'none';
-         }
-      }
-      if (results === true) {
-         noResultsDiv.style.display = 'none';
-      } else {
-         noResultsDiv.style.display = '';
-      }
-      pageDiv.removeChild(linkDiv);
-      appendPageLinks(filteredList);
+      filter();
    }
 });
