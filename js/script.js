@@ -25,7 +25,8 @@ searchDiv.appendChild(button);
 
 const noResultsDiv = document.createElement('div');
 pageDiv.appendChild(noResultsDiv);
-noResultsDiv.innerHTML = '<p style = "font-style: italic">No results were found. Please try another search.</p>';
+noResultsDiv.innerHTML = '<p style = "font-style: italic">No results'
+   + ' were found. Please try another search.</p>';
 noResultsDiv.style.display = 'none';
 
 //Displays only ten students at a time, based on the page selected
@@ -43,10 +44,11 @@ const showPage = (list, page) => {
    };
 }
 
-/***
-   Creates the correct number of page links based on the total number of students 
-   in a list, and calls the showPage function when each link is clicked
-***/
+/*
+Creates the correct number of page links based on the total number of
+students in a list, and calls the showPage function when each link is
+clicked
+*/
 
 const appendPageLinks = list => {
    const totalPages = Math.ceil(list.length / 10);
@@ -80,22 +82,22 @@ const appendPageLinks = list => {
          const activePageNum = i + 1;
          showPage(list, activePageNum);
       });
-   }
+   };
 }
 
-/*** 
-   Calls the showPage and appendSearch function so the initial page load 
-   will display page 1 of the student list and the search component
-***/
+/*
+Calls the showPage and appendSearch function so the initial page load
+will display page 1 of the student list and the search component
+*/
 
 showPage(studentList, 1);
 
 appendPageLinks(studentList);
 
-/***
-   Searches/filters student list by finding partial matches to user's input
-   and displays the correct number of page links based on the results 
-***/
+/*
+Searches/filters student list by finding partial matches to user's input
+and displays the correct number of page links based on the results
+*/
 
 const filter = () => {
    const userInput = input.value.toUpperCase();
@@ -123,10 +125,10 @@ const filter = () => {
    appendPageLinks(filteredList);
 }
 
-/*** 
-   Adds event listeners to search component so users can either click
-   or press Enter/Return to submit their search
-***/ 
+/*
+Adds event listeners to search component so users can either click
+or press Enter/Return to submit their search
+*/
 
 button.addEventListener('click', () => {
    filter();
