@@ -5,6 +5,7 @@ FSJS project 2 - List Filter and Pagination
 const pageDiv = document.querySelector('div.page');
 const headerDiv = document.querySelector('div.page-header');
 const studentList = document.querySelectorAll('li.student-item');
+const studentNames = document.querySelectorAll('h3');
 
 //create search component
 
@@ -85,10 +86,11 @@ appendPageLinks(studentList);
 
 //add functionality to search component
 
-const studentNames = document.querySelectorAll('h3');
+
 button.addEventListener('click', () => {
    const userInput = input.value.toUpperCase();
    const filteredList = [];
+   const linkDiv = document.querySelector('div.pagination');
    for (let i = 0; i < studentNames.length; i++) {
       if (studentNames[i].textContent.toUpperCase().includes(userInput)) {
          studentList[i].style.display = '';
@@ -97,5 +99,6 @@ button.addEventListener('click', () => {
          studentList[i].style.display = 'none';
       }
    }
+   pageDiv.removeChild(linkDiv);
    appendPageLinks(filteredList);
 });
