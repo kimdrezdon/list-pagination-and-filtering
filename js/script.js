@@ -89,6 +89,7 @@ appendPageLinks(studentList);
 const noResultsDiv = document.createElement('div');
 pageDiv.appendChild(noResultsDiv);
 noResultsDiv.innerHTML = "<p>No students were found with that name</p>";
+noResultsDiv.style.display = 'none';
 
 //filtering function
 
