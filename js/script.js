@@ -7,7 +7,7 @@ const headerDiv = document.querySelector('div.page-header');
 const studentList = document.querySelectorAll('li.student-item');
 const studentNames = document.querySelectorAll('h3');
 
-//create search component
+//create search component at top of page
 
 const searchDiv = document.createElement('div');
 searchDiv.className = 'student-search';
@@ -21,11 +21,12 @@ const button = document.createElement('button');
 button.textContent = 'search';
 searchDiv.appendChild(button);
 
-//function used to display only ten students based on the page selected
+//function used to display only ten students at a time, based on the page selected
 
 const showPage = (list, page) => {
    const firstIndex = (page * 10) - 10;
    const lastIndex = (page * 10) - 1;
+   
    for (let i = 0; i < list.length; i++) {
       if (i >= firstIndex && i <= lastIndex) {
          list[i].style.display = '';
@@ -41,7 +42,7 @@ const showPage = (list, page) => {
    each link is clicked
 ***/
 
-const appendPageLinks = (list) => {
+const appendPageLinks = list => {
    const totalPages = Math.ceil(list.length / 10);
    
    const linkDiv = document.createElement('div');
@@ -62,6 +63,7 @@ const appendPageLinks = (list) => {
    };
    
    const pageLinks = document.querySelectorAll('a');
+   
    for (let i = 0; i < pageLinks.length; i++) {
       pageLinks[i].addEventListener('click', (e) => {
          for (let i = 0; i < pageLinks.length; i++) {
@@ -84,20 +86,21 @@ showPage(studentList, 1);
 
 appendPageLinks(studentList);
 
-//create div to store No Results message
+//create div to store No Results message, default to hidden
 
 const noResultsDiv = document.createElement('div');
 pageDiv.appendChild(noResultsDiv);
 noResultsDiv.innerHTML = '<p style = "font-style: italic">No results were found. Please try another search.</p>';
 noResultsDiv.style.display = 'none';
 
-//filtering function
+//function used to search/filter student list and display the correct number of page links based on the results
 
 const filter = () => {
    const userInput = input.value.toUpperCase();
    const filteredList = [];
    const linkDiv = document.querySelector('div.pagination');
    let results = false;
+   
    for (let i = 0; i < studentNames.length; i++) {
       if (studentNames[i].textContent.toUpperCase().includes(userInput)) {
          studentList[i].style.display = '';
@@ -112,12 +115,13 @@ const filter = () => {
    } else {
       noResultsDiv.style.display = '';
    }
+   
    pageDiv.removeChild(linkDiv);
    showPage(filteredList, 1);
    appendPageLinks(filteredList);
 }
 
-//add event listeners to search component
+//add click and keyup event listeners to search component
 
 button.addEventListener('click', () => {
    filter();
