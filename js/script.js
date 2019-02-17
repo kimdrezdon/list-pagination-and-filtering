@@ -101,7 +101,7 @@ const filter = () => {
    for (let i = 0; i < studentNames.length; i++) {
       if (studentNames[i].textContent.toUpperCase().includes(userInput)) {
          studentList[i].style.display = '';
-         filteredList.push(studentNames[i]);
+         filteredList.push(studentList[i]);
          results = true;
       } else {
          studentList[i].style.display = 'none';
@@ -113,6 +113,7 @@ const filter = () => {
       noResultsDiv.style.display = '';
    }
    pageDiv.removeChild(linkDiv);
+   showPage(filteredList, 1);
    appendPageLinks(filteredList);
 }
 
