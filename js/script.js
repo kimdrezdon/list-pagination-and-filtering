@@ -7,7 +7,7 @@ const headerDiv = document.querySelector('div.page-header');
 const studentList = document.querySelectorAll('li.student-item');
 const studentNames = document.querySelectorAll('h3');
 
-//create search component at top of page
+//Creates search component at top of page
 
 const searchDiv = document.createElement('div');
 searchDiv.className = 'student-search';
@@ -21,7 +21,14 @@ const button = document.createElement('button');
 button.textContent = 'search';
 searchDiv.appendChild(button);
 
-//function used to display only ten students at a time, based on the page selected
+//Creates div to store No Results message, defaults it to hidden
+
+const noResultsDiv = document.createElement('div');
+pageDiv.appendChild(noResultsDiv);
+noResultsDiv.innerHTML = '<p style = "font-style: italic">No results were found. Please try another search.</p>';
+noResultsDiv.style.display = 'none';
+
+//Displays only ten students at a time, based on the page selected
 
 const showPage = (list, page) => {
    const firstIndex = (page * 10) - 10;
@@ -37,9 +44,8 @@ const showPage = (list, page) => {
 }
 
 /***
-   Function used to create the correct number of page links based on the
-   total number of students in a list, and call the showPage function when
-   each link is clicked
+   Creates the correct number of page links based on the total number of students 
+   in a list, and calls the showPage function when each link is clicked
 ***/
 
 const appendPageLinks = list => {
@@ -78,22 +84,18 @@ const appendPageLinks = list => {
 }
 
 /*** 
-   Call the showPage and appendSearch function for the initial load 
-   to display page 1 with a search component
+   Calls the showPage and appendSearch function so the initial page load 
+   will display page 1 of the student list and the search component
 ***/
 
 showPage(studentList, 1);
 
 appendPageLinks(studentList);
 
-//create div to store No Results message, default to hidden
-
-const noResultsDiv = document.createElement('div');
-pageDiv.appendChild(noResultsDiv);
-noResultsDiv.innerHTML = '<p style = "font-style: italic">No results were found. Please try another search.</p>';
-noResultsDiv.style.display = 'none';
-
-//function used to search/filter student list and display the correct number of page links based on the results
+/***
+   Searches/filters student list by finding partial matches to user's input
+   and displays the correct number of page links based on the results 
+***/
 
 const filter = () => {
    const userInput = input.value.toUpperCase();
@@ -121,7 +123,10 @@ const filter = () => {
    appendPageLinks(filteredList);
 }
 
-//add click and keyup event listeners to search component
+/*** 
+   Adds event listeners to search component so users can either click
+   or press Enter/Return to submit their search
+***/ 
 
 button.addEventListener('click', () => {
    filter();
