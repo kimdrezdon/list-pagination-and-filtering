@@ -42,7 +42,7 @@ const showPage = (list, page) => {
       } else {
          list[i].style.display = 'none';
       }
-   };
+   }
 }
 
 /*
@@ -69,7 +69,7 @@ const appendPageLinks = list => {
       a.textContent = pageNum;
       a.href = '#';
       li.appendChild(a);
-   };
+   }
    
    const pageLinks = document.querySelectorAll('a');
    
@@ -77,13 +77,13 @@ const appendPageLinks = list => {
       pageLinks[i].addEventListener('click', (e) => {
          for (let i = 0; i < pageLinks.length; i++) {
             pageLinks[i].className = '';
-         };
+         }
          const activePage = e.target;
          activePage.className = 'active';
          const activePageNum = i + 1;
          showPage(list, activePageNum);
       });
-   };
+   }
 }
 
 /*
