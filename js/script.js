@@ -7,6 +7,7 @@ const pageDiv = document.querySelector("div.page");
 const headerDiv = document.querySelector("div.page-header");
 const studentList = document.querySelectorAll("li.student-item");
 const studentNames = document.querySelectorAll("h3");
+const studentsPerPage = 10;
 
 //Creates search component at top of page
 
@@ -34,8 +35,8 @@ noResultsDiv.style.display = "none";
 //Displays only ten students at a time, based on the page selected
 
 const showPage = (list, page) => {
-  const firstIndex = page * 10 - 10;
-  const lastIndex = page * 10 - 1;
+  const firstIndex = page * studentsPerPage - studentsPerPage;
+  const lastIndex = page * studentsPerPage - 1;
 
   for (let i = 0; i < list.length; i++) {
     if (i >= firstIndex && i <= lastIndex) {
@@ -53,7 +54,7 @@ clicked
 */
 
 const appendPageLinks = list => {
-  const totalPages = Math.ceil(list.length / 10);
+  const totalPages = Math.ceil(list.length / studentsPerPage);
 
   const linkDiv = document.createElement("div");
   linkDiv.className = "pagination";
