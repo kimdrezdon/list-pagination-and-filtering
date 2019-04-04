@@ -7,28 +7,13 @@ const pageDiv = document.querySelector("div.page");
 const headerDiv = document.querySelector("div.page-header");
 const studentList = document.querySelectorAll("li.student-item");
 const studentNames = document.querySelectorAll("h3");
-let studentsPerPage = 10;
+const studentsPerPage = 10;
 
-//Creates search div at top of page
+//Creates search component at top of page
 
 const searchDiv = document.createElement("div");
 searchDiv.className = "student-search";
 headerDiv.appendChild(searchDiv);
-
-//Creates select menu to change number of students to display per page
-
-const select = document.createElement("select");
-select.id = "per-page";
-const values = [10, 20, 40, 60, 100];
-for (let i = 0; i < values.length; i++) {
-  const option = document.createElement("option");
-  select.appendChild(option);
-  option.value = values[i];
-  option.textContent= values[i];
-}
-searchDiv.appendChild(select);
-
-//Creates search component at top of page
 
 const input = document.createElement("input");
 input.placeholder = "search for students...";
@@ -46,11 +31,6 @@ noResultsDiv.innerHTML =
   '<p style = "font-style: italic">No results' +
   " were found. Please try another search.</p>";
 noResultsDiv.style.display = "none";
-
-//Updates the value of studentsPerPage based on the selected option
-select.addEventListener('change', function (e) {
-  studentsPerPage = e.target.value;
-});
 
 //Displays only ten students at a time, based on the page selected
 
