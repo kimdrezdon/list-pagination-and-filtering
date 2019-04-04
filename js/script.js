@@ -73,6 +73,7 @@ const appendPageLinks = list => {
   }
 
   const pageLinks = document.querySelectorAll("a");
+  pageLinks[0].className = 'active';
 
   for (let i = 0; i < pageLinks.length; i++) {
     pageLinks[i].addEventListener("click", e => {
