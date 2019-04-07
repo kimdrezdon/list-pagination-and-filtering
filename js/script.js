@@ -17,7 +17,7 @@ headerDiv.appendChild(searchDiv);
 
 //Creates select menu to change number of students to display per page
 
-const select = document.createElement("select");
+/* const select = document.createElement("select");
 select.id = "per-page";
 const values = [10, 20, 40, 60, 100];
 for (let i = 0; i < values.length; i++) {
@@ -26,7 +26,7 @@ for (let i = 0; i < values.length; i++) {
   option.value = values[i];
   option.textContent= values[i];
 }
-searchDiv.appendChild(select);
+searchDiv.appendChild(select); */
 
 //Creates search component at top of page
 
@@ -48,9 +48,9 @@ noResultsDiv.innerHTML =
 noResultsDiv.style.display = "none";
 
 //Updates the value of studentsPerPage based on the selected option
-select.addEventListener('change', function (e) {
+/* select.addEventListener('change', function (e) {
   studentsPerPage = e.target.value;
-});
+}); */
 
 //Displays only ten students at a time, based on the page selected
 
