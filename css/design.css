@@ -1,6 +1,6 @@
 body{
   background-color: #FFAA5A;
-  font-family: Helvetica, sans-serif;
+  font-family: 'Karla', sans-serif;
   color: #424242;
 }
 
@@ -32,6 +32,7 @@ body{
       border: 1px solid #eaeaea;
       padding: 8px 15px;
       font-size: 15px;
+      font-family: 'Karla', sans-serif;
     }
 
     .page-header .student-search button{
@@ -40,7 +41,8 @@ body{
       padding: 8px 15px;
       font-size: 15px;
       background-color: #FFAA5A;
-      color: #fff
+      color: #fff;
+      font-family: 'Karla', sans-serif;
     }
 
 .student-list{}
