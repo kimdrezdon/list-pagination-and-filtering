@@ -1,4 +1,4 @@
-# techdegree-project-2 : List Pagination and Filtering
+# List Pagination and Filtering
 
 This project uses unobtrusive JavaScript to add pagination links to a long list of students, displaying only 10 students per page. 
 This will work for a list of any length.  
