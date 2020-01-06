@@ -17,16 +17,16 @@ headerDiv.appendChild(searchDiv);
 
 //Creates select menu to change number of students to display per page
 
-/* const select = document.createElement("select");
-select.id = "per-page";
-const values = [10, 20, 40, 60, 100];
-for (let i = 0; i < values.length; i++) {
-  const option = document.createElement("option");
-  select.appendChild(option);
-  option.value = values[i];
-  option.textContent= values[i];
-}
-searchDiv.appendChild(select); */
+// const select = document.createElement("select");
+// select.id = "per-page";
+// const values = [10, 20, 40, 60, 100];
+// for (let i = 0; i < values.length; i++) {
+//   const option = document.createElement("option");
+//   select.appendChild(option);
+//   option.value = values[i];
+//   option.textContent= values[i];
+// }
+// searchDiv.appendChild(select);
 
 //Creates search component at top of page
 
@@ -44,9 +44,13 @@ noResultsDiv.innerHTML =
 noResultsDiv.style.display = "none";
 
 //Updates the value of studentsPerPage based on the selected option
-/* select.addEventListener('change', function (e) {
-  studentsPerPage = e.target.value;
-}); */
+// select.addEventListener('change', function (e) {
+//   studentsPerPage = e.target.value;
+//   const linkDiv = document.querySelector("div.pagination");
+//   pageDiv.removeChild(linkDiv);
+//   showPage(studentList, 1);
+//   appendPageLinks(studentList);
+// });
 
 //Displays only ten students at a time, based on the page selected
 
