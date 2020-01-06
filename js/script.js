@@ -34,10 +34,6 @@ const input = document.createElement("input");
 input.placeholder = "search for students...";
 searchDiv.appendChild(input);
 
-const button = document.createElement("button");
-button.textContent = "search";
-searchDiv.appendChild(button);
-
 //Creates div to store No Results message, defaults it to hidden
 
 const noResultsDiv = document.createElement("div");
@@ -150,16 +146,8 @@ const filter = () => {
 };
 
 /*
-Adds event listeners to search component so users can either click
-or press Enter/Return to submit their search
+Adds event listener to search component so users can filter the list in 
+real-time
 */
 
-button.addEventListener("click", () => {
-  filter();
-});
-
-input.addEventListener("keyup", e => {
-  if (e.key === "Enter") {
-    filter();
-  }
-});
+input.addEventListener("keyup", e => filter());
