@@ -9,11 +9,44 @@ const studentList = document.querySelectorAll("li.student-item");
 const studentNames = document.querySelectorAll("h3");
 let studentsPerPage = 10;
 
+// Creates an element and appends it to the page
+
+const appendElement = (tag, parent, elementClass, placeHolder) => {
+  let newElement = document.createElement(tag);
+  if (elementClass) {
+    newElement.className = elementClass;
+  }
+  if (placeHolder) {
+    newElement.placeholder = placeHolder;
+  }
+  return parent.appendChild(newElement);
+}
+
+// Hides or shows an element
+
+const displayElement = (element) => {
+  element.style.display = "";
+}
+
+const hideElement = (element) => {
+  element.style.display = "none";
+}
+
 //Creates search div at top of page
 
-const searchDiv = document.createElement("div");
-searchDiv.className = "student-search";
-headerDiv.appendChild(searchDiv);
+const searchDiv = appendElement("div", headerDiv, "student-search");
+
+//Creates search component at top of page
+
+const input = appendElement("input", searchDiv, "student-search", "search for students...");
+
+//Creates div to store No Results message, defaults it to hidden
+
+const noResultsDiv = appendElement("div", pageDiv);
+noResultsDiv.innerHTML =
+  '<p style = "font-style: italic">No results' +
+  " were found. Please try another search.</p>";
+hideElement(noResultsDiv);
 
 //Creates select menu to change number of students to display per page
 
@@ -28,22 +61,8 @@ headerDiv.appendChild(searchDiv);
 // }
 // searchDiv.appendChild(select);
 
-//Creates search component at top of page
-
-const input = document.createElement("input");
-input.placeholder = "search for students...";
-searchDiv.appendChild(input);
-
-//Creates div to store No Results message, defaults it to hidden
-
-const noResultsDiv = document.createElement("div");
-pageDiv.appendChild(noResultsDiv);
-noResultsDiv.innerHTML =
-  '<p style = "font-style: italic">No results' +
-  " were found. Please try another search.</p>";
-noResultsDiv.style.display = "none";
-
 //Updates the value of studentsPerPage based on the selected option
+
 // select.addEventListener('change', function (e) {
 //   studentsPerPage = e.target.value;
 //   const linkDiv = document.querySelector("div.pagination");
@@ -60,9 +79,9 @@ const showPage = (list, page) => {
 
   for (let i = 0; i < list.length; i++) {
     if (i >= firstIndex && i <= lastIndex) {
-      list[i].style.display = "";
+      displayElement(list[i]);
     } else {
-      list[i].style.display = "none";
+      hideElement(list[i]);
     }
   }
 };
@@ -76,37 +95,31 @@ clicked
 const appendPageLinks = list => {
   const totalPages = Math.ceil(list.length / studentsPerPage);
 
-  const linkDiv = document.createElement("div");
-  linkDiv.className = "pagination";
-  pageDiv.appendChild(linkDiv);
+  const linkDiv = appendElement("div", pageDiv, "pagination");
+  
+  if (totalPages > 0) {
+    const ul = appendElement("ul", linkDiv);
 
-  const ul = document.createElement("ul");
-  linkDiv.appendChild(ul);
-
-  for (let i = 0; i < totalPages; i++) {
-    const li = document.createElement("li");
-    ul.appendChild(li);
-    const a = document.createElement("a");
-    const pageNum = i + 1;
-    a.textContent = pageNum;
-    a.href = "#";
-    li.appendChild(a);
-  }
-
-  const pageLinks = document.querySelectorAll("a");
-  pageLinks[0].className = 'active';
-
-  for (let i = 0; i < pageLinks.length; i++) {
-    pageLinks[i].addEventListener("click", e => {
-      for (let i = 0; i < pageLinks.length; i++) {
-        pageLinks[i].className = "";
+    for (let i = 0; i < totalPages; i++) {
+      const li = appendElement("li", ul);
+      const a = appendElement("a", li);
+      const pageNum = i + 1;
+      a.textContent = pageNum;
+      a.href = "#";
+    }
+  
+    const pageLinks = document.querySelectorAll("a");
+    pageLinks[0].className = 'active';
+  
+    linkDiv.addEventListener("click", e => {
+      if (e.target.tagName === "A") {
+        pageLinks.forEach(link => link.className = "");
+        e.target.className = "active";
+        const activePageNum = e.target.textContent;
+        showPage(list, activePageNum);
       }
-      const activePage = e.target;
-      activePage.className = "active";
-      const activePageNum = i + 1;
-      showPage(list, activePageNum);
     });
-  }
+  }  
 };
 
 /*
@@ -131,17 +144,17 @@ const filter = () => {
 
   for (let i = 0; i < studentNames.length; i++) {
     if (studentNames[i].textContent.toUpperCase().includes(userInput)) {
-      studentList[i].style.display = "";
+      displayElement(studentList[i]);
       filteredList.push(studentList[i]);
       results = true;
     } else {
-      studentList[i].style.display = "none";
+      hideElement(studentList[i]);
     }
   }
   if (results === true) {
-    noResultsDiv.style.display = "none";
+    hideElement(noResultsDiv);
   } else {
-    noResultsDiv.style.display = "";
+    displayElement(noResultsDiv);
   }
 
   pageDiv.removeChild(linkDiv);
