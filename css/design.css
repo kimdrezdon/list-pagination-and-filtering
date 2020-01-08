@@ -16,18 +16,15 @@ body{
 }
 
 .page-header{
-  margin-bottom: 20px;
+  margin-bottom: 45px;
 }
   .page-header h2{
-    float: left;
     font-size: 23px;
     text-transform: uppercase;
     font-weight: bold;
     color: #191919;
-  }
-
-  .page-header .student-search{
-    float: right;
+    margin-bottom: 20px;
+    text-align: center;
   }
 
     .page-header .student-search input{
@@ -36,69 +33,77 @@ body{
       padding: 8px 15px;
       font-size: 15px;
       font-family: 'Karla', sans-serif;
+      display: inline-block;
+      width: 220px;
+      margin-left: 160px;
     }
 
-    .page-header .student-search button{
+    .page-header .student-search label{
+      font-size: 15px;
+      font-family: 'Karla', sans-serif;
+      width: 140px;
+      margin-left: 340px;
+      display: inline-block;
+    }
+
+    .page-header .student-search select{
       border-radius: 5px;
       border: 1px solid #eaeaea;
-      padding: 8px 15px;
       font-size: 15px;
-      background-color: #FFAA5A;
-      color: #fff;
       font-family: 'Karla', sans-serif;
+      display: inline-block;
+      width: 60px;
     }
 
-.student-list{}
+.student-item{
+  margin: 0 0 20px 0;
+  padding: 0 0 20px 0;
+  border-bottom: 1px solid #eaeaea;
+}
 
-  .student-item{
-    margin: 0 0 20px 0;
-    padding: 0 0 20px 0;
-    border-bottom: 1px solid #eaeaea;
+  .student-details{
+    width: 50%;
+    float: left;
   }
 
-    .student-details{
-      width: 50%;
+    .student-details .avatar{
+      width: 40px;
+      height: auto;
+      border-radius: 20px;
       float: left;
+      margin-right: 14px
     }
 
-      .student-details .avatar{
-        width: 40px;
-        height: auto;
-        border-radius: 20px;
-        float: left;
-        margin-right: 14px
-      }
-
-      .student-details h3{
-        margin: 4px 0 2px 0;
-        font-weight: bold;
-        color: #FF785A;
-      }
-
-      .student-details .email{
-        color: #424242;
-        font-size: 14px;
-      }
-
-
-    .joined-details{
-      width: 50%;
-      float: left;
-      text-align: right;
+    .student-details h3{
+      margin: 4px 0 2px 0;
+      font-weight: bold;
+      color: #FF785A;
     }
 
-      .joined-details .date{
-        margin-top: 15px;
-        display: block;
-        font-size: 14px;
-        color: #424242;
-      }
+    .student-details .email{
+      color: #424242;
+      font-size: 14px;
+    }
 
-  .student-item:last-child{
-    margin: 0;
-    padding: 0;
-    border-bottom: none;
+
+  .joined-details{
+    width: 50%;
+    float: left;
+    text-align: right;
   }
+
+    .joined-details .date{
+      margin-top: 15px;
+      display: block;
+      font-size: 14px;
+      color: #424242;
+    }
+
+.student-item:last-child{
+  margin: 0;
+  padding: 0;
+  border-bottom: none;
+}
 
 .pagination{
   margin: 40px 0 0 0;
