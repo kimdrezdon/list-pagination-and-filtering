@@ -27,6 +27,11 @@ body{
     text-align: center;
   }
 
+  .page-header .student-search {
+    width: 100%;
+    text-align: center;
+  }
+
     .page-header .student-search input{
       border-radius: 5px;
       border: 1px solid #eaeaea;
@@ -34,15 +39,15 @@ body{
       font-size: 15px;
       font-family: 'Karla', sans-serif;
       display: inline-block;
-      width: 220px;
-      margin-left: 160px;
+      width: 170px;
+      text-align: left;
     }
 
     .page-header .student-search label{
       font-size: 15px;
       font-family: 'Karla', sans-serif;
-      width: 140px;
-      margin-left: 340px;
+      width: 160px;
+      margin-left: 20%;
       display: inline-block;
     }
 
