@@ -9,13 +9,10 @@ let filteredList = [];
 
 // Function creates an element and appends it to the page
 
-const appendElement = (tag, parent, elementClass, placeHolder) => {
+const appendElement = (tag, parent, elementClass) => {
   let newElement = document.createElement(tag);
   if (elementClass) {
     newElement.className = elementClass;
-  }
-  if (placeHolder) {
-    newElement.placeholder = placeHolder;
   }
   return parent.appendChild(newElement);
 }
@@ -32,13 +29,22 @@ const hideElement = (element) => {
 
 // Function used to hide/show no results div
 
-const noResultsDisplay = results => {
-  if (results === true) {
-    hideElement(noResultsDiv);
-  } else {
+const hideNoResults = results => {
+  if (results === false) {
     displayElement(noResultsDiv);
-  }
+  } else {
+    hideElement(noResultsDiv);
+  } 
 };
+
+//Function used to remove pagination ul
+
+const removePaginationLinks = () => {
+  const ul = document.querySelector("ul.pagination");
+  if (ul) {
+    linkDiv.removeChild(ul);
+  };
+}
 
 //Creates search div at top of page
 
@@ -46,7 +52,23 @@ const searchDiv = appendElement("div", headerDiv, "student-search");
 
 //Creates search component at top of page
 
-const input = appendElement("input", searchDiv, "student-search", "search for students...");
+const input = appendElement("input", searchDiv, "student-search");
+input.placeholder = "search for students...";
+
+//Creates select menu to change number of students to display per page
+const label = appendElement("label", searchDiv);
+label.textContent = "Results per page";
+label.setAttribute("for", "per-page");
+
+const select = document.createElement("select");
+select.id = "per-page";
+const values = [10, 20, 40, 60, 100];
+values.forEach(value => {
+  let option = appendElement("option", select);
+  option.value = value;
+  option.textContent= value;
+})
+searchDiv.appendChild(select);
 
 //Creates div to store No Results message, defaults it to hidden
 
@@ -115,12 +137,9 @@ const filter = () => {
     }
   }
   
-  noResultsDisplay(results);
+  hideNoResults(results);
 
-  const ul = document.querySelector("ul.pagination");
-  if (ul) {
-    linkDiv.removeChild(ul);
-  };
+  removePaginationLinks();
 
   showPage(filteredList, 1);
   appendPageLinks(filteredList);
@@ -153,6 +172,17 @@ linkDiv.addEventListener("click", e => {
   }
 });
 
+//Updates the value of studentsPerPage based on the selected option and resets the page
+
+select.addEventListener('change', e => {
+  studentsPerPage = e.target.value;
+  removePaginationLinks();
+  hideNoResults(true);
+  input.value = '';
+  showPage(studentList, 1);
+  appendPageLinks(studentList);
+});
+
 // Handles the initial page load. Displays page 1 of the student list, 
 // appends the page links, and hides the noResults div
 
@@ -160,27 +190,4 @@ showPage(studentList, 1);
 
 appendPageLinks(studentList);
 
-noResultsDisplay(true);
-
-//Creates select menu to change number of students to display per page
-
-// const select = document.createElement("select");
-// select.id = "per-page";
-// const values = [10, 20, 40, 60, 100];
-// for (let i = 0; i < values.length; i++) {
-//   const option = document.createElement("option");
-//   select.appendChild(option);
-//   option.value = values[i];
-//   option.textContent= values[i];
-// }
-// searchDiv.appendChild(select);
-
-//Updates the value of studentsPerPage based on the selected option
-
-// select.addEventListener('change', function (e) {
-//   studentsPerPage = e.target.value;
-//   const linkDiv = document.querySelector("div.pagination");
-//   pageDiv.removeChild(linkDiv);
-//   showPage(studentList, 1);
-//   appendPageLinks(studentList);
-// });
+hideNoResults(true);
