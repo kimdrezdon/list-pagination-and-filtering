@@ -46,16 +46,17 @@ const removePaginationLinks = () => {
   };
 }
 
-//Creates search div at top of page
+// Creates search div at top of page
 
 const searchDiv = appendElement("div", headerDiv, "student-search");
 
-//Creates search component at top of page
+// Creates search component at top of page
 
 const input = appendElement("input", searchDiv, "student-search");
 input.placeholder = "search for students...";
 
-//Creates select menu to change number of students to display per page
+// Creates select menu to change number of students to display per page
+
 const label = appendElement("label", searchDiv);
 label.textContent = "Results per page";
 label.setAttribute("for", "per-page");
@@ -70,7 +71,7 @@ values.forEach(value => {
 })
 searchDiv.appendChild(select);
 
-//Creates div to store No Results message, defaults it to hidden
+// Creates div to store No Results message, defaults it to hidden
 
 const noResultsDiv = appendElement("div", pageDiv);
 noResultsDiv.innerHTML = '<p style = "font-style: italic">'
@@ -81,7 +82,7 @@ noResultsDiv.innerHTML += '</p>';
 
 const linkDiv = appendElement("div", pageDiv, "pagination");
 
-//Displays only ten students at a time, based on the page selected
+// Displays only ten students at a time, based on the page selected
 
 const showPage = (list, page) => {
   const firstIndex = page * studentsPerPage - studentsPerPage;
@@ -172,7 +173,7 @@ linkDiv.addEventListener("click", e => {
   }
 });
 
-//Updates the value of studentsPerPage based on the selected option and resets the page
+// Updates the value of studentsPerPage based on the selected option and resets the page
 
 select.addEventListener('change', e => {
   studentsPerPage = e.target.value;
@@ -183,8 +184,8 @@ select.addEventListener('change', e => {
   appendPageLinks(studentList);
 });
 
-// Handles the initial page load. Displays page 1 of the student list, 
-// appends the page links, and hides the noResults div
+// Handles the initial page load. Displays page 1 of the student list, appends
+// the page links, and hides the noResults div
 
 showPage(studentList, 1);
 
