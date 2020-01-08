@@ -34,15 +34,15 @@ body{
       font-size: 15px;
       font-family: 'Karla', sans-serif;
       display: inline-block;
-      width: 300px;
-      margin-left: 30px;
+      width: 220px;
+      margin-left: 160px;
     }
 
     .page-header .student-search label{
       font-size: 15px;
       font-family: 'Karla', sans-serif;
       width: 140px;
-      margin-left: 560px;
+      margin-left: 340px;
       display: inline-block;
     }
 
